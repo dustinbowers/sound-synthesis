@@ -1,5 +1,6 @@
 use crate::mixer::SampleProvider;
 
+#[derive(Debug)]
 pub struct SineWave {
     pub frequency: f32,
     pub amplitude: f32,
@@ -15,6 +16,7 @@ impl SampleProvider for SineWave {
     }
 }
 
+#[derive(Debug)]
 pub struct SquareWave {
     pub frequency: f32,
     pub amplitude: f32,
@@ -34,6 +36,7 @@ impl SampleProvider for SquareWave {
     }
 }
 
+#[derive(Debug)]
 pub struct TriangleWave {
     pub frequency: f32,
     pub amplitude: f32,
@@ -54,4 +57,5 @@ impl SampleProvider for TriangleWave {
 }
 
 // TODO
+//#[derive(Debug)]
 // pub struct Noise {}

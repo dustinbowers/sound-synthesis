@@ -1,8 +1,11 @@
-pub trait SampleProvider {
+use std::fmt::Debug;
+
+pub trait SampleProvider: Debug {
     fn get_sample(&mut self) -> f32;
 }
+
 pub struct AudioMixer {
-    channels: Vec<Box<dyn SampleProvider + Send>>,
+    pub channels: Vec<Box<dyn SampleProvider + Send>>,
 }
 
 impl AudioMixer {

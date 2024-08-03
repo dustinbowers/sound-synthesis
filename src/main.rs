@@ -14,7 +14,7 @@ use tinyaudio::BaseAudioOutputDevice;
 fn main() -> eframe::Result {
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
     let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default().with_inner_size([320.0, 240.0]),
+        viewport: egui::ViewportBuilder::default().with_inner_size([640.0, 480.0]),
         ..Default::default()
     };
 
@@ -77,6 +77,10 @@ impl eframe::App for MyApp {
                 }));
             }
         }
+
+        //
+        // Start drawing frame elements
+
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("Hello, Audio!");
             // ui.horizontal(|ui| {
@@ -88,11 +92,31 @@ impl eframe::App for MyApp {
             // if ui.button("Increment").clicked() {
             //     self.age += 1;
             // }
-            ui.label("todo".to_string());
+
+            ui.separator();
+            ui.heading("Current Channels");
+            {
+                let mut mixer = self.mixer.lock().unwrap();
+                let channels = &mut mixer.channels;
+                let mut channel_to_remove: Option<usize> = None;
+                for (i, c) in channels.iter().enumerate() {
+                    ui.horizontal(|ui| {
+                        ui.label(format!("Channel {} - {:?}", i, c));
+                        if ui.button("X").clicked() {
+                            channel_to_remove = Some(i);
+                        }
+                    });
+                }
+                if let Some(chan_id) = channel_to_remove {
+                    channels.remove(chan_id);
+                }
+            }
 
             // ui.image(egui::include_image!(
             //     "assets/logo.png"
             // ));
+
+            ui.ctx().request_repaint();
         });
     }
 }
