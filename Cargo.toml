@@ -1,0 +1,13 @@
+[package]
+name = "SoundSynthesis"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+eframe = "0.28.1"
+egui = "0.28.1"
+egui_extras = "0.28.1"
+tinyaudio = "0.1.4"
+env_logger = "0.11.5"
+once_cell = "1.19.0"
+rand = { version = "0.9.0-alpha.2", features = [] }
