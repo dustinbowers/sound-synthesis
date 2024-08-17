@@ -10,6 +10,7 @@ dependencies = [
  "egui",
  "egui_extras",
  "env_logger",
+ "indexmap",
  "once_cell",
  "rand 0.9.0-alpha.2",
  "tinyaudio",
