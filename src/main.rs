@@ -99,6 +99,11 @@ impl eframe::App for MyApp {
 
         egui::CentralPanel::default().show(ctx, |ui| {
 
+            ui.style_mut().text_styles.insert(
+                egui::TextStyle::Button,
+                egui::FontId::new(24.0, eframe::epaint::FontFamily::Proportional),
+            );
+
             ui.heading("Phone Keypad");
             ui.separator();
             {
